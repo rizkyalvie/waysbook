@@ -7,16 +7,15 @@ export default function Background() {
       style={{
         width: "100%",
         height: "35rem",
-        backgroundColor: "white",
         position: "absolute",
         left: "0",
         top: "0",
         display: "flex",
-        gap: "30rem",
+        gap: "35rem",
       }}
     >
       <img
-        style={{ opacity: "30%", width: "40rem", height: "40rem", objectFit:'cover' }}
+        style={{ opacity: "30%", width: "35rem", height: "35rem" }}
         src={left}
         alt=""
       />

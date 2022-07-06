@@ -13,7 +13,9 @@ export default function Navbar() {
   return (
     <div className={styles.navContainer}>
       <div className={styles.logo}>
+        <Link to='/'>
         <img src={logo} alt="" />
+        </Link>
       </div>
       <div className={styles.right}>
         <img className={styles.cart} src={cart} alt="" />

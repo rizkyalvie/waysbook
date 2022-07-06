@@ -1,5 +1,5 @@
 import styles from "../../css/card.module.css";
-import pic from "../../assets/temp/profile.jpg";
+import pic from "../../assets/book/book2.png";
 
 export default function Slide() {
   return (
@@ -10,19 +10,18 @@ export default function Slide() {
         </div>
         <div className={styles.right}>
           <div className={styles.title}>
-            <h4>Sebuah seni untuk bersikap bodoamt</h4>
+            <h4>Sebuah seni untuk bersikap bodoamat</h4>
           </div>
           <div className={styles.author}>
-            <i>By Rizky Alvie</i>
+            <i>By Mark Manson</i>
           </div>
           <div className={styles.desc}>
             <p>
-              test test test test test test test test test test test test test
-              test test test test test
+              "Selama beberapa tahun belakangan, Mark Manson melalui blognya yang sangan populer"
             </p>
           </div>
           <div className={styles.price}>
-            <p>Rp.60.000</p>
+            <p>Rp59.000</p>
           </div>
           <button>Add to Cart</button>
         </div>

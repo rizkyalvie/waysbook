@@ -7,6 +7,7 @@ import Card from "../components/card/slide";
 export default function Home() {
   return (
     <div>
+      <div className={styles.bgWhite}></div>
       <Background />
       <Navbar />
       <div className={styles.heading}>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mina&family=Vollkorn:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Mina&family=Poppins:wght@300&family=Vollkorn:ital@1&display=swap');
 
 body{
   font-size: 62.5% !important;
@@ -7,4 +7,9 @@ body{
   margin: 0;
   color: #393939;
   background-color: #E5E5E5;
+}
+
+a{
+  text-decoration: none;
+  color: black
 }
