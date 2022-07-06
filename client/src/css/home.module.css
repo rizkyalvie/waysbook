@@ -1,0 +1,46 @@
+.heading{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.heading h1{
+    font-family: 'Vollkorn', serif !important;
+    position: absolute;
+    width: 45rem;
+    top: 10rem;
+    text-align: center;
+    font-size: 3rem
+}
+
+.slider{
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 25rem;
+    gap: 1rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;  /* Firefox */
+}
+
+.slider::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+.listBook{
+    position: absolute;
+    top: 50rem;
+    margin-left: 7.5rem;
+}
+
+.listBook .title{
+    font-size: 1rem;
+}
+
+.book{
+    display: flex;
+    gap: 2rem;
+    width: 78rem;
+    flex-wrap: wrap;
+}
