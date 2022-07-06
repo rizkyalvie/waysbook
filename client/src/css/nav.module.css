@@ -40,6 +40,10 @@
     font-weight: bold;
 }
 
+.register:hover{
+    background-color: rgb(80, 79, 79)
+}
+
 .right{
     display: flex;
     padding: 1rem;
@@ -151,4 +155,19 @@
     position: absolute;
     top: -0.6rem;
     left: 6.5rem;
+}
+
+.notification{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background-color: red;
+    position: absolute;
+    top: 2.3rem;
+    left: 76.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
 }

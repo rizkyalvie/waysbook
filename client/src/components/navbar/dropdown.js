@@ -5,14 +5,18 @@ import complain from "../../assets/icons/complain.png";
 import logout from "../../assets/icons/logout.png";
 import arrow from "../../assets/icons/polygon.png";
 
+import { Link } from "react-router-dom";
+
 export default function Dropdown() {
   return (
     <div>
       <div className={styles.dropCon}>
-        <div className={styles.profile}>
-          <img src={profile} />
-          <p>Profile</p>
-        </div>
+        <Link to="/profile">
+          <div className={styles.profile}>
+            <img src={profile} />
+            <p>Profile</p>
+          </div>
+        </Link>
         <div className={styles.complain}>
           <img src={complain} />
           <p>Complain</p>
