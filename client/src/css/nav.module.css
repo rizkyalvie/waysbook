@@ -52,6 +52,15 @@
     gap: 1rem
 }
 
+.right button{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.right button:hover{
+    cursor: pointer;
+}
+
 .right .cart{
     width: 2rem;
     height: 2rem;
@@ -69,10 +78,11 @@
     background-color: white;
     width: 6rem;
     height: 7rem;
-    right: 3.5rem;
-    top: 4.7rem;
+    right: 7.8rem;
+    top: 6rem;
     padding: 0.2rem 1rem;
     border-radius: 0.3rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .dropCon .profile{
