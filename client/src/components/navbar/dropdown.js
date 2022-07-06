@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../../css/nav.module.css";
-import profile from "../../assets/navbar/profile.png";
-import complain from "../../assets/navbar/complain.png";
-import logout from "../../assets/navbar/logout.png";
-import arrow from "../../assets/navbar/polygon.png";
+import profile from "../../assets/icons/profile.png";
+import complain from "../../assets/icons/complain.png";
+import logout from "../../assets/icons/logout.png";
+import arrow from "../../assets/icons/polygon.png";
 
 export default function Dropdown() {
   return (

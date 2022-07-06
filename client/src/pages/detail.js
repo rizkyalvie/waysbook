@@ -3,7 +3,7 @@ import styles from "../css/detail.module.css";
 import Navbar from "../components/navbar/navAuth";
 import Bg from "../components/background/bg";
 import book from "../assets/book/book1.png";
-import cart from "../assets/navbar/cartwhite.png";
+import cart from "../assets/icons/cartwhite.png";
 
 export default function Detail() {
   return (

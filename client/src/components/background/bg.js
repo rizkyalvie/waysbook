@@ -11,11 +11,11 @@ export default function Background() {
         left: "0",
         top: "0",
         display: "flex",
-        gap: "35rem",
+        gap: "40rem",
       }}
     >
       <img
-        style={{ opacity: "30%", width: "35rem", height: "35rem" }}
+        style={{ opacity: "30%", width: "30rem", height: "35rem" }}
         src={left}
         alt=""
       />

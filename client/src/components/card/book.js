@@ -8,7 +8,7 @@ export default function Book() {
       <Link to='/detail'>
       <div className={styles.book}>
         <div className={styles.bookImg}>
-          <img src={pic} alt="" />
+          <img src={pic}/>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.title}>

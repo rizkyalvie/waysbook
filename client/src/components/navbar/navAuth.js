@@ -1,7 +1,7 @@
 import styles from "../../css/nav.module.css";
-import logo from "../../assets/navbar/logo.png";
+import logo from "../../assets/icons/logo.png";
 import profile from "../../assets/temp/profile.jpg";
-import cart from "../../assets/navbar/cart.png";
+import cart from "../../assets/icons/cart.png";
 import {Link} from 'react-router-dom'
 import Dropdown from "./dropdown";
 import {useState} from 'react'
@@ -18,7 +18,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className={styles.right}>
-        <img className={styles.cart} src={cart} alt="" />
+        <Link to='/cart'><img className={styles.cart} src={cart} alt="" /></Link>
         {drop ? <button onClick={() => setDrop(false)} ><img className={styles.profile} src={profile} alt="" /></button> : <button onClick={() => setDrop(true)} ><img className={styles.profile} src={profile} alt="" /></button>}
       </div>
       {drop && <Dropdown/>}
