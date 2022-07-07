@@ -77,6 +77,16 @@
     object-fit: cover;
 }
 
+@keyframes fadeIn {
+    0%    { opacity: 0; }
+    100%  { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    100%  { opacity: 1; }
+    0%    { opacity: 0; }
+  }
+
 .dropCon{
     position: absolute;
     background-color: white;
@@ -87,6 +97,7 @@
     padding: 0rem 1rem;
     border-radius: 0.3rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    animation: fadeIn 0.2s;
 }
 
 .dropCon .profile{
@@ -171,3 +182,4 @@
     color: white;
     font-weight: bold;
 }
+

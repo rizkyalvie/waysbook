@@ -4,7 +4,10 @@
     display: flex;
     position: absolute;
     left: 15rem;
-    gap: 1rem
+    gap: 1rem;
+    height: 40rem;
+    overflow: hidden;
+    margin-top: 5rem;
 }
 
 .left{
@@ -29,7 +32,7 @@
 .right{
     flex: 40%;
     position: relative;
-    top: 7.9rem
+    top: 9.4rem
 }
 
 .right .total .subtotal{
@@ -50,6 +53,7 @@
     font-size: 1rem;
     color: green;
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 .btnBuy{
@@ -74,6 +78,10 @@
 .mc{
     font-family: 'EB Garamond', serif;
     font-size: 2rem;
+}
+
+.ryo{
+    font-family: 'Poppins', sans-serif;
 }
 
 .myCart .left{
@@ -121,6 +129,6 @@
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     position: relative;
-    left: 20.5rem;
-    top: 9.1rem
+    left: 19.5rem;
+    top: 5.1rem
 }

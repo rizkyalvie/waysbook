@@ -12,7 +12,7 @@ export default function Cart() {
       <div className={styles.cartContainer}>
         <div className={styles.left}>
           <h1 className={styles.mc}>My Cart</h1>
-          <h1>Review Your order</h1>
+          <h1 className={styles.ryo}>Review Your order</h1>
           <hr />
           <div className={styles.list}>
             <MyCart />

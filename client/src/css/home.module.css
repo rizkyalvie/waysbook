@@ -1,7 +1,13 @@
+@keyframes slide{
+    from{ margin-top: -200;}
+    to{ margin-top: 0;}
+}
+
 .heading{
     width: 100%;
     display: flex;
     justify-content: center;
+    animation: slide 1s;
 }
 
 .heading h1{

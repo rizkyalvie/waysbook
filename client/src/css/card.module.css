@@ -94,7 +94,7 @@
 }
 
 .cardBody .title{
-    height: 4rem;
+    height: 8rem;
     width: 10rem;
     flex-wrap: wrap;
     overflow: hidden;
@@ -110,6 +110,7 @@
     color: #444444;
     font-size: 1rem;
     position: relative;
+    top: -1.5rem
 }
 
 .cardBody .price{
@@ -117,5 +118,5 @@
     color: green;
     font-weight: bold;
     position: relative;
-    top: 1rem;
+    top: -1.5rem;
 }
