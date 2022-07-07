@@ -82,11 +82,6 @@
     100%  { opacity: 1; }
   }
 
-  @keyframes fadeOut {
-    100%  { opacity: 1; }
-    0%    { opacity: 0; }
-  }
-
 .dropCon{
     position: absolute;
     background-color: white;
@@ -97,7 +92,7 @@
     padding: 0rem 1rem;
     border-radius: 0.3rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    animation: fadeIn 0.2s;
+    animation: fadeIn 0.2s linear;
 }
 
 .dropCon .profile{
@@ -151,6 +146,21 @@
     top: -1.4rem
 }
 
+.notification{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background-color: red;
+    position: absolute;
+    top: 2.3rem;
+    left: 77.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
 .dropCon .logout img{
     height: 1rem;
 }
@@ -166,20 +176,5 @@
     position: absolute;
     top: -0.6rem;
     left: 6.5rem;
-}
-
-.notification{
-    width: 1rem;
-    height: 1rem;
-    border-radius: 1rem;
-    background-color: red;
-    position: absolute;
-    top: 2.3rem;
-    left: 76.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: bold;
 }
 

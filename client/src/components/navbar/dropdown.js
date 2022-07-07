@@ -17,10 +17,12 @@ export default function Dropdown() {
             <p>Profile</p>
           </div>
         </Link>
+        <Link to="/complain">
         <div className={styles.complain}>
           <img src={complain} />
           <p>Complain</p>
         </div>
+        </Link>
         <div className={styles.hLine}></div>
         <div className={styles.logout}>
           <img src={logout} />

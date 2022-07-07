@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Mina&family=Poppins:wght@300&family=Vollkorn:ital@1&display=swap');
 
+html{
+  scrollbar-width: none;
+}
+
 body{
   font-size: 62.5% !important;
   font-family: 'Mina', sans-serif;
@@ -23,4 +27,8 @@ button{
 button:hover{
   background-color: rgba(0,0,0,0);
   cursor: pointer;
+}
+
+::-webkit-scrollbar{
+  display: none;
 }

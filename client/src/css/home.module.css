@@ -1,13 +1,13 @@
-@keyframes slide{
-    from{ margin-top: -200;}
-    to{ margin-top: 0;}
-}
+@keyframes fadeIn {
+    0%    { opacity: 0; }
+    100%  { opacity: 1; }
+  }
 
 .heading{
     width: 100%;
     display: flex;
     justify-content: center;
-    animation: slide 1s;
+    animation: fadeIn 1s;
 }
 
 .heading h1{
@@ -18,7 +18,7 @@
     text-align: center;
     font-size: 3rem
 }
-
+ 
 .slider{
     width: 100%;
     display: flex;
