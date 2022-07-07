@@ -1,8 +1,8 @@
 import styles from "../../css/auth.module.css";
 
-export default function Login({ setRegister }) {
+export default function Login({ setLogin, setRegister }) {
   return (
-    <div>
+    <div className={styles.regAnimation}>
       <button onClick={() => setRegister()} className={styles.logModal}></button>
       <div className={styles.register}>
         <h1 className={styles.logTitle}>Register</h1>
@@ -13,7 +13,7 @@ export default function Login({ setRegister }) {
         </form>
         <button className={styles.logButton}>Login</button>
         <p>
-          Don't have an account? click <a href="">here</a>
+          Already have an account? click <button onClick={() => {setRegister && setRegister(false)}} className={styles.chBtn}>here</button>
         </p>
       </div>
     </div>

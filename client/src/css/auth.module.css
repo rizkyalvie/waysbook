@@ -97,3 +97,23 @@
     text-align: center;
     margin-top: -1rem;
 }
+
+@keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.logAnimation{
+    animation: fade 0.2s;
+}
+
+.regAnimation{
+    animation: fade 0.2s;
+}
+
+.chBtn{
+    position: relative;
+    left: -0.45rem;
+    width: 2.5rem;
+    overflow: hidden;
+}

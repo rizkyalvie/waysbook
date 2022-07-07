@@ -4,19 +4,32 @@ import profile from "../../assets/icons/profile.png";
 import complain from "../../assets/icons/complain.png";
 import logout from "../../assets/icons/logout.png";
 import arrow from "../../assets/icons/polygon.png";
+import book from "../../assets/icons/book.png"
+// import {useState} from 'react'
 
 import { Link } from "react-router-dom";
+
+const admin = false
 
 export default function Dropdown() {
   return (
     <div>
       <div className={styles.dropCon}>
+        {admin ? 
         <Link to="/profile">
           <div className={styles.profile}>
             <img src={profile} />
             <p>Profile</p>
           </div>
-        </Link>
+        </Link> 
+        : 
+        <Link to="/add-book">
+          <div className={styles.profile}>
+            <img src={book} />
+            <p>Add Book</p>
+          </div>
+        </Link> 
+        }
         <Link to="/complain">
         <div className={styles.complain}>
           <img src={complain} />

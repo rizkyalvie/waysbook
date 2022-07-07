@@ -6,11 +6,13 @@ import Card from "../components/card/slide";
 import LoginModal from "../components/auth/login"
 import RegisterModal from "../components/auth/register"
 import {useState} from 'react'
+import NotifModal from '../components/card/addCart'
 
 export default function Home() {
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
+  const [notif, setNotif] = useState(false)
 
   return (
     <div>
@@ -24,7 +26,7 @@ export default function Home() {
         </h1>
       </div>
       <div className={styles.slider}>
-        <Card />
+        <Card setNotif={setNotif} />
         <Card />
         <Card />
         <Card />
@@ -45,8 +47,9 @@ export default function Home() {
         </div>
       
       </div>
-      {login && <LoginModal setLogin={setLogin}/>}
-      {register && <RegisterModal setRegister={setRegister}/>}
+      {login && <LoginModal setLogin={setLogin} setRegister={setRegister}/>}
+      {register && <RegisterModal setLogin={setLogin} setRegister={setRegister}/>}
+      {notif && <NotifModal setNotif={setNotif} />}
     </div>
   );
 }

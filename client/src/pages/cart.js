@@ -3,8 +3,13 @@ import Navbar from "../components/navbar/navAuth";
 import Bg from "../components/background/bg";
 import styles from "../css/cart.module.css";
 import MyCart from "../components/cart/cart";
+import PaymentModal from "../components/card/payment"
+import {useState} from 'react'
 
 export default function Cart() {
+
+  const [success, setSuccess] = useState(false)
+
   return (
     <div>
       <Bg />
@@ -39,9 +44,10 @@ export default function Cart() {
             <p>Total:</p>
             <p>134.000</p>
           </div>
-          <button className={styles.btnBuy}>Pay</button>
+          <button onClick={() => setSuccess(true)} className={styles.btnBuy}>Pay</button>
         </div>
       </div>
+      {success && <PaymentModal setSuccess={setSuccess}/>}
     </div>
   );
 }

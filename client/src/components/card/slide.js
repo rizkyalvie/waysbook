@@ -1,7 +1,7 @@
 import styles from "../../css/card.module.css";
 import pic from "../../assets/book/book2.png";
 
-export default function Slide() {
+export default function Slide({setNotif}) {
   return (
     <div className={styles.container}>
       <div className={styles.slideCard}>
@@ -23,7 +23,7 @@ export default function Slide() {
           <div className={styles.price}>
             <p>Rp59.000</p>
           </div>
-          <button>Add to Cart</button>
+          <button onClick={() => setNotif(true)}>Add to Cart</button>
         </div>
       </div>
     </div>
