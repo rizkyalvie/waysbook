@@ -7,6 +7,7 @@ import Cart from "./pages/cart";
 import Profile from "./pages/profile";
 import Complain from "./pages/complain"
 import AddBook from "./pages/addBook"
+import Transaction from "./pages/transaction"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/complain" element={<Complain/>}></Route>
       <Route path="/add-book" element={<AddBook/>}></Route>
+      <Route path="/list-transaction" element={<Transaction/>}></Route>
     </Routes>
   );
 }

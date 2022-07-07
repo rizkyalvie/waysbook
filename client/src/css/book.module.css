@@ -7,6 +7,8 @@
     left: 15rem;
     position: absolute;
     top: 13rem;
+    height: 30rem;
+    overflow: hidden;
 }
 
 .addForm input{
@@ -21,6 +23,8 @@
     border-radius: 0.5rem;
     border: 1px solid grey;
     background-color: #d4d4d4;
+    resize: none;
+    height: 10rem;
 }
 
 .abTitle{
@@ -40,6 +44,11 @@
     align-items: center;
     background-color: #d4d4d4;
     border: 1px solid grey;
+    height: 4rem;
+}
+
+.cover:hover{
+    cursor: pointer;
 }
 
 .cover img{
@@ -53,7 +62,7 @@
 
 .bookBtn{
     width: 7rem;
-    padding:  0.2rem 0.5rem;
+    padding:  0.3rem 0.5rem;
     background-color: rgb(27, 27, 27);
     color: white;
     display: flex;
@@ -70,4 +79,21 @@
 
 .bookBtn img{
     width: 1rem;
+}
+
+.lt{
+    background-color: #6e6c6c;
+    padding: 0.5rem 0.5rem;
+    color: white;
+    position: absolute;
+    top: 9rem;
+    left: 67.75rem;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.lt:hover{
+    cursor: pointer;
+    background-color: #838282;
 }

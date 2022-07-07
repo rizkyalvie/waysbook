@@ -3,6 +3,7 @@ import Navbar from "../components/navbar/navAuth";
 import Bg from "../components/background/bg";
 import attach from "../assets/icons/attachment.png";
 import book from "../assets/icons/book.png";
+import { Link } from "react-router-dom";
 
 export default function Add() {
   return (
@@ -10,6 +11,9 @@ export default function Add() {
       <Bg />
       <Navbar />
       <h1 className={styles.abTitle}>Add Book</h1>
+      <Link to="/list-transaction" className={styles.lt}>
+        List Transaction
+      </Link>
       <form>
         <input type="text" placeholder="Title" />
         <input type="text" placeholder="Publication Date" />
