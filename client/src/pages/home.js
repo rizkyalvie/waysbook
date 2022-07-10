@@ -1,12 +1,17 @@
 import Navbar from "../components/navbar/navbar";
+import NavbarAuth from "../components/navbar/navAuth"
 import Background from "../components/background/bg";
 import Book from "../components/card/book";
 import styles from "../css/home.module.css";
 import Card from "../components/card/slide";
 import LoginModal from "../components/auth/login"
 import RegisterModal from "../components/auth/register"
-import {useState} from 'react'
 import NotifModal from '../components/card/addCart'
+import {useState, useContext} from 'react'
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
+
+
 
 export default function Home() {
 
@@ -14,11 +19,16 @@ export default function Home() {
   const [register, setRegister] = useState(false)
   const [notif, setNotif] = useState(false)
 
+  const title = 'Books';
+  document.title = 'DumbMerch | ' + title;
+
+  const [state] = useContext(UserContext)
+
   return (
     <div>
       <div className={styles.bgWhite}></div>
       <Background />
-      <Navbar setLogin={setLogin} setRegister={setRegister}/>
+      {state?.isLogin === true ? <NavbarAuth/> : <Navbar setLogin={setLogin} setRegister={setRegister}/>}
       <div className={styles.heading}>
         <h1>
           With us, you can shop online & help save your high street at the same

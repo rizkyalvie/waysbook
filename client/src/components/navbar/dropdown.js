@@ -2,31 +2,46 @@ import React from "react";
 import styles from "../../css/nav.module.css";
 import profile from "../../assets/icons/profile.png";
 import complain from "../../assets/icons/complain.png";
-import logout from "../../assets/icons/logout.png";
+import logoutIcon from "../../assets/icons/logout.png";
 import arrow from "../../assets/icons/polygon.png";
 import book from "../../assets/icons/book.png"
 // import {useState} from 'react'
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const admin = false
 
 export default function Dropdown() {
+
+  const [state, dispatch] = useContext(UserContext)
+
+  let navigate = useNavigate()
+
+  const logout = () => {
+      console.log(state)
+      dispatch({
+          type: "LOGOUT"
+      })
+      navigate("/")
+  }
+
   return (
     <div>
       <div className={styles.dropCon}>
-        {admin ? 
-        <Link to="/profile">
-          <div className={styles.profile}>
-            <img src={profile} />
-            <p>Profile</p>
-          </div>
-        </Link> 
-        : 
+        {state?.user.data.status === "admin" ? 
         <Link to="/add-book">
           <div className={styles.profile}>
             <img src={book} />
             <p>Add Book</p>
+          </div>
+        </Link> 
+        :
+        <Link to="/profile">
+          <div className={styles.profile}>
+            <img src={profile} />
+            <p>Profile</p>
           </div>
         </Link> 
         }
@@ -37,10 +52,12 @@ export default function Dropdown() {
         </div>
         </Link>
         <div className={styles.hLine}></div>
+        <Link onClick={logout} to="/">
         <div className={styles.logout}>
-          <img src={logout} />
+          <img src={logoutIcon} />
           <p>Logout</p>
         </div>
+        </Link>
         <img src={arrow} className={styles.arrow} />
       </div>
     </div>

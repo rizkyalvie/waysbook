@@ -9,7 +9,7 @@
     display: flex;
     width: 8rem;
     position: relative;
-    top: 1.7rem;
+    top: 0.9rem;
     left: 6rem;
 }
 
@@ -31,6 +31,10 @@
     border: solid 0.2rem #393939;
     color: #393939;
     font-weight: bold;
+}
+
+.login:hover{
+    background-color: rgba(0,0,0,0.4)
 }
 
 .register{

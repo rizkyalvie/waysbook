@@ -9,7 +9,67 @@ import Complain from "./pages/complain"
 import AddBook from "./pages/addBook"
 import Transaction from "./pages/transaction"
 
+import { API, setAuthToken } from "./config/api"
+import { useContext, useEffect } from 'react'
+import { UserContext } from './context/userContext'
+import { useNavigate } from 'react-router-dom'
+
+
 function App() {
+
+  let navigate = useNavigate();
+
+  const [state, dispatch] = useContext(UserContext);
+  console.clear();
+  
+  console.log(state);
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    if (state.isLogin === false) {
+      navigate('/');
+    } else {
+      if (state.user.status === 'admin') {
+        navigate('/home-admin');
+      } else if (state.user.status === 'user') {
+        navigate('/');
+      }
+    }
+  }, [state]);
+
+  const checkUser = async () => {
+    try {
+      const response = await API.get('/check-auth');
+
+      if (response.status === 404) {
+        return dispatch({
+          type: 'AUTH_ERROR',
+        });
+      }
+
+      let payload = response.user;
+      payload.token = localStorage.token;
+
+      dispatch({
+        type: 'USER_SUCCESS',
+        payload,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.token) {
+      checkUser();
+    }
+  }, []);
+
+  
+
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
