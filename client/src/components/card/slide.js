@@ -1,5 +1,6 @@
 import styles from "../../css/card.module.css";
 import { useShoppingCart } from "use-shopping-cart";
+import convertRupiah from 'rupiah-format'
 
 export default function Slide({setNotif, item}) {
 
@@ -35,7 +36,7 @@ export default function Slide({setNotif, item}) {
             </p>
           </div>
           <div className={styles.price}>
-            <p>{item.price}</p>
+            <p>{convertRupiah.convert(item.price)}</p>
           </div>
           <button onClick={(e) => {setNotif(true); handleCart(e);}}>Add to Cart</button>
         </div>

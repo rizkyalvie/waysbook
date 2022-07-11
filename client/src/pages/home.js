@@ -47,22 +47,15 @@ export default function Home() {
           time
         </h1>
       </div>
-      
-        
-        
         <div className={styles.slider}>
         {book?.map((item, index) => item.promobook === "yes" &&
           <Card setNotif={setNotif} item={item} key={index} />
         )}
-
       </div>
-        
-      
       <div className={styles.listBook}>
         <div className={styles.title}>
           <h1>List Book</h1>
         </div>
-        
           {book?.length !==0 && 
           <div className={styles.book}>
           {book?.map((item, index) => (
@@ -73,7 +66,6 @@ export default function Home() {
           </div>
           }
         </div>
-      
       {login && <LoginModal setLogin={setLogin} setRegister={setRegister}/>}
       {register && <RegisterModal setLogin={setLogin} setRegister={setRegister}/>}
       {notif && <NotifModal setNotif={setNotif} />}

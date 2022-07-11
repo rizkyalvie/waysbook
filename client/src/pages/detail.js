@@ -3,7 +3,9 @@ import Navbar from "../components/navbar/navbar";
 import NavAuth from "../components/navbar/navAuth"
 import Bg from "../components/background/bg";
 import cart from "../assets/icons/cartwhite.png";
+import LoginModal from "../components/auth/login"
 import NotifModal from '../components/card/addCart'
+import RegisterModal from "../components/auth/register"
 
 import { useShoppingCart } from "use-shopping-cart";
 import { useQuery } from "react-query";
@@ -15,6 +17,9 @@ import { UserContext } from "../context/userContext";
 export default function Detail() {
 
   let {id} = useParams()
+
+  const [login, setLogin] = useState(false)
+  const [register, setRegister] = useState(false)
   const [notif, setNotif] = useState(false)
 
   const [state] = useContext(UserContext)
@@ -43,7 +48,7 @@ export default function Detail() {
   return (
     <div>
       <Bg />
-      {state?.isLogin === true ? <NavAuth/> : <Navbar/>}
+      {state?.isLogin === true ? <NavAuth/> : <Navbar setLogin={setLogin} setRegister={setRegister}/>}
       <div className={styles.bookDetailContainer}>
         <div className={styles.top}>
           <div className={styles.left}>
@@ -84,6 +89,8 @@ export default function Detail() {
           </button>
         </div>
       </div>
+      {login && <LoginModal setLogin={setLogin} setRegister={setRegister}/>}
+      {register && <RegisterModal setLogin={setLogin} setRegister={setRegister}/>}
       {notif && <NotifModal setNotif={setNotif} />}
     </div>
   );

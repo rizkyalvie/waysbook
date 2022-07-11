@@ -1,13 +1,25 @@
 import styles from "../../css/nav.module.css";
 import logo from "../../assets/icons/logo.png";
-import profile from "../../assets/temp/profile.jpg";
+import blankProfile from "../../assets/temp/blank-profile.png";
 import cart from "../../assets/icons/cart.png";
-import { Link } from "react-router-dom";
 import Dropdown from "./dropdown";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
 import { useShoppingCart } from "use-shopping-cart";
+import { UserContext } from "../../context/userContext";
+import { useQuery } from "react-query";
+import { API } from "../../config/api";
 
 export default function Navbar() {
+
+  const [state] = useContext(UserContext)
+
+  let {data: profile} = useQuery('profileCache', async () => {
+    const response = await API.get(`/profile/` + state?.user.data.id)
+    console.log(response.data.data)
+    return response.data.data
+  })
+
   const [drop, setDrop] = useState(false);
 
   const {cartDetails, clearCart} = useShoppingCart();
@@ -31,11 +43,11 @@ export default function Navbar() {
         </Link>
         {drop ? (
           <button onClick={() => setDrop(false)}>
-            <img className={styles.profile} src={profile} alt="" />
+            <img className={styles.profile} src={profile?.image ? profile?.image : blankProfile} alt="" />
           </button>
         ) : (
           <button onClick={() => setDrop(true)}>
-            <img className={styles.profile} src={profile} alt="" />
+            <img className={styles.profile} src={profile?.image ? profile?.image : blankProfile} alt="" />
           </button>
         )}
       </div>

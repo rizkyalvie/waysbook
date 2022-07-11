@@ -6,11 +6,25 @@ import mail from "../assets/icons/mail.png";
 import phone from "../assets/icons/phone.png";
 import gender from "../assets/icons/gender.png";
 import location from "../assets/icons/location.png";
-import profile from "../assets/temp/profile.jpg";
 
 import Book from "../components/card/bookProf";
 
+import { Link } from 'react-router-dom'
+import { useQuery } from "react-query";
+import { API } from "../config/api.js"
+import { useContext } from 'react'
+import { UserContext } from "../context/userContext";
+
 export default function Profile() {
+
+  const [state] = useContext(UserContext)
+
+  let {data: profile} = useQuery('profileCache', async () => {
+    const response = await API.get(`/profile/` + state?.user.data.id)
+    console.log(response.data.data)
+    return response.data.data
+  })
+
   return (
     <div>
       <Bg />
@@ -23,35 +37,35 @@ export default function Profile() {
               <div className={styles.email}>
                 <img src={mail} />
                 <div className={styles.val}>
-                  <h3>alvienuryahya@gmail.com</h3>
+                  <h3>{profile?.mail}</h3>
                   <p>Email</p>
                 </div>
               </div>
               <div className={styles.gender}>
                 <img src={gender} />
                 <div className={styles.val}>
-                  <h3>Male</h3>
+                  <h3>{profile?.gender}</h3>
                   <p>Gender</p>
                 </div>
               </div>
               <div className={styles.phone}>
                 <img src={phone} />
                 <div className={styles.val}>
-                  <h3>0895413416500</h3>
+                  <h3>{profile?.phone}</h3>
                   <p>Phone</p>
                 </div>
               </div>
               <div className={styles.location}>
                 <img src={location} />
                 <div className={styles.val}>
-                  <h3>Jl.Puki Abadi, Depok, Jawa Tengah.</h3>
+                  <h3>{profile?.location}</h3>
                   <p>Location</p>
                 </div>
               </div>
             </div>
             <div className={styles.right}>
-              <img src={profile} alt="" />
-              <button>Edit Profile</button>
+              <img src={profile?.image} alt="" />
+              <Link to={"/edit-profile/" + state?.user.data.id}><button>Edit Profile</button></Link>
             </div>
           </div>
         </div>

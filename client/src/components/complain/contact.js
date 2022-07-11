@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../css/complain.module.css";
-import profile from "../../assets/temp/profile.jpg";
+import profile from "../../assets/temp/blank-profile.png";
 
 export default function Contact() {
   return (

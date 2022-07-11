@@ -8,6 +8,8 @@ import Profile from "./pages/profile";
 import Complain from "./pages/complain"
 import AddBook from "./pages/addBook"
 import Transaction from "./pages/transaction"
+import EditProfile from "./pages/editProfile"
+import ComplainAdmin from "./pages/complainAdmin"
 
 import { API, setAuthToken } from "./config/api"
 import { useContext, useEffect } from 'react'
@@ -74,9 +76,11 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="/detail/:id" element={<Detail />}></Route>
+      <Route path="/edit-profile/:id" element={<EditProfile/>}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/complain" element={<Complain/>}></Route>
+      <Route path="/complain-admin" element={<ComplainAdmin/>}></Route>
       <Route path="/add-book" element={<AddBook/>}></Route>
       <Route path="/list-transaction" element={<Transaction/>}></Route>
     </Routes>

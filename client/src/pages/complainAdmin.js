@@ -13,65 +13,54 @@ import {io} from 'socket.io-client'
 let socket
 export default function Complain() {
 
-  const [contact, setContact] = useState(null)
+    const [contact, setContact] = useState(null)
     const [contacts, setContacts] = useState([])
-    // code here
     const [messages, setMessages] = useState([])
 
     const title = "Complain admin"
     document.title = 'DumbMerch | ' + title
 
-    // code here
     const [state] = useContext(UserContext)
 
     useEffect(() =>{
         socket = io('http://localhost:5000', {
             auth: {
-                token: localStorage.getItem("token")
+                token: localStorage.getItem('token')
             }
         })
 
-        // code here
         socket.on("new message", () => {
             socket.emit('load messages', contact?.id)
         })
-        
-        // listen error sent from server
-        socket.on("connect_error", (err) => {
-            console.error(err.message); // not authorized
-          });
-        loadContact()
+
+        loadContacts()
         loadMessages()
 
         return () => {
             socket.disconnect()
         }
-    }, [messages]) // code here
+    }, [messages]) 
 
-    const loadContact = () => {
-        // emit event load admin contact
-        socket.emit("load admin contact")
-        // listen event to get admin contact
-        socket.on("admin contact", (data) => {
-            // manipulate data to add message property with the newest message
-            // code here
-
-            const dataContact = {
-                ...data,
-                message: messages.length > 0 ? messages[messages.length - 1].message : 'Click here to start message'
-            }
-            setContacts([dataContact])
+    const loadContacts = () => {
+        socket.emit("load user contacts")
+        socket.on("user contacts", (data) => {
+            
+            let dataContacts = data.map((item) => ({
+                ...item,
+                message: item.senderMessage.length > 0 ? item.senderMessage[item.senderMessage.length - 1].message : 'Click here to start message'
+            }))
+            
+            setContacts(dataContacts)
         })
     }
 
-    // used for active style when click contact
     const onClickContact = (data) => {
         setContact(data)
-        // code here
+
         socket.emit('load messages', data.id)
     }
 
-    // code here
+
     const loadMessages = () => {
         socket.on('messages', async (data) => {
             if(data.length > 0){
@@ -80,9 +69,11 @@ export default function Complain() {
                     message: item.message
                 }))
                 setMessages(dataMessages)
+
+                loadContacts()
             }else{
                 setMessages([])
-                loadContact()
+                loadContacts()
             }
         })
     }
@@ -105,36 +96,19 @@ export default function Complain() {
       <Bg />
 
       <h1 className={styles.cTitle}>Customer Complain</h1>
-        <div className={styles.chatContainerCustomer}>
-          <div className={styles.chatCustomer}>
-            <div className={styles.contactProfileCustomer}>
+        <div className={styles.chatContainer}> 
+          <div className={styles.chatList}>
+            <Contact dataContact={contacts} clickContact={onClickContact} contact={contact}/>
+          </div>
+          <div className={styles.chat}>
+            <div className={styles.contactProfile}>
               <img src={profile} alt="" />
-              <p>Admin Gantenk</p>
+              <p>Ananda Rizky Alvie Nuryahya</p>
             </div>
-            <div className={styles.messageCustomer}>
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
-              <Chat />
+            <div className={styles.message}>
+              <Chat contact={contact} messages={messages} user={state.user} sendMessage={onSendMessage}/>
             </div>
-            <div className={styles.inputMessageCustomer}>
+            <div className={styles.inputMessage}>
               <input type="text" placeholder="Write message here" />
               <button>Send</button>
             </div>
