@@ -6,7 +6,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { UserContextProvider } from './context/userContext';
 import { QueryClient, QueryClientProvider } from 'react-query'
 
+import { CartProvider } from 'use-shopping-cart'
 import './css/app.css'
+
+const stripeKey = process.env.YOUR_STRIPE_PUBLIC_KEY
+
 
 const client = new QueryClient()
 
@@ -16,7 +20,13 @@ root.render(
     <UserContextProvider>
       <QueryClientProvider client={client}>
         <Router>
-          <App />
+          <CartProvider     
+          mode="payment"
+          cartMode="checkout-session"
+          stripe={stripeKey}
+          currency="USD">
+            <App />
+          </CartProvider>
         </Router>
       </QueryClientProvider>
     </UserContextProvider>

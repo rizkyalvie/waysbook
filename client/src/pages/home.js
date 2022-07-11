@@ -1,15 +1,21 @@
 import Navbar from "../components/navbar/navbar";
 import NavbarAuth from "../components/navbar/navAuth"
 import Background from "../components/background/bg";
-import Book from "../components/card/book";
 import styles from "../css/home.module.css";
+
+// components
+import Book from "../components/card/book";
 import Card from "../components/card/slide";
 import LoginModal from "../components/auth/login"
-import RegisterModal from "../components/auth/register"
 import NotifModal from '../components/card/addCart'
+import RegisterModal from "../components/auth/register"
+
+// module
 import {useState, useContext} from 'react'
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+import { API } from "../config/api";
+import { useQuery } from "react-query";
 
 
 
@@ -24,6 +30,12 @@ export default function Home() {
 
   const [state] = useContext(UserContext)
 
+  let {data: book} = useQuery('bookData', async () => {
+    const response = await API.get('/book')
+    console.log(response.data.data)
+    return response.data.data
+  })
+
   return (
     <div>
       <div className={styles.bgWhite}></div>
@@ -35,28 +47,33 @@ export default function Home() {
           time
         </h1>
       </div>
-      <div className={styles.slider}>
-        <Card setNotif={setNotif} />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      
+        
+        
+        <div className={styles.slider}>
+        {book?.map((item, index) => item.promobook === "yes" &&
+          <Card setNotif={setNotif} item={item} key={index} />
+        )}
+
       </div>
+        
+      
       <div className={styles.listBook}>
         <div className={styles.title}>
           <h1>List Book</h1>
         </div>
-        <div className={styles.book}>
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
+        
+          {book?.length !==0 && 
+          <div className={styles.book}>
+          {book?.map((item, index) => (
+            <Book item={item} key={index} />
+          ))
+
+          }
+          </div>
+          }
         </div>
       
-      </div>
       {login && <LoginModal setLogin={setLogin} setRegister={setRegister}/>}
       {register && <RegisterModal setLogin={setLogin} setRegister={setRegister}/>}
       {notif && <NotifModal setNotif={setNotif} />}

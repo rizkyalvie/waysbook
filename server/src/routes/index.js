@@ -6,7 +6,7 @@ const router = express.Router()
 // const { addProduct, getProduct, getAllProducts, updateProduct, deleteProduct } = require('../controllers/products')
 // const { addCategory, getAllCategories, getCategory, updateCategory, deleteCategory } = require('../controllers/category')
 // const { addTransaction, getAllTransactions, notification } = require('../controllers/transaction')
-const { addBooks } = require('../controllers/books')
+const { addBooks, getAllBooks, getBook } = require('../controllers/books')
 const { getProfile, updateProfile } = require('../controllers/profile')
 const { register, login, checkAuth } = require('../controllers/auth')
 
@@ -22,6 +22,8 @@ router.get('/check-auth', auth, checkAuth);
 
 // Book Route
 router.post('/book', auth, uploadFile.fields([{name:"bookattachment", maxCount:1},{name:"thumbnail", maxCount:1},]), addBooks)
+router.get('/book', auth, getAllBooks )
+router.get('/book/:id', auth, getBook)
 
 // // Product route
 // router.post('/product', auth, uploadFile('image'), addProduct)

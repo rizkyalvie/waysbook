@@ -73,7 +73,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/detail" element={<Detail />}></Route>
+      <Route path="/detail/:id" element={<Detail />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/complain" element={<Complain/>}></Route>

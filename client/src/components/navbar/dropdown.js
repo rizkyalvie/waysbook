@@ -13,13 +13,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Dropdown() {
+export default function Dropdown({logoutHandler}) {
 
   const [state, dispatch] = useContext(UserContext)
 
   let navigate = useNavigate()
 
-  const logout = () => {
+  function logout(){
       console.log(state)
       dispatch({
           type: "LOGOUT"
@@ -52,7 +52,7 @@ export default function Dropdown() {
         </div>
         </Link>
         <div className={styles.hLine}></div>
-        <Link onClick={logout} to="/">
+        <Link onClick={() => {logout(); logoutHandler()}} to="/">
         <div className={styles.logout}>
           <img src={logoutIcon} />
           <p>Logout</p>

@@ -4,11 +4,23 @@ import Bg from "../components/background/bg";
 import styles from "../css/cart.module.css";
 import MyCart from "../components/cart/cart";
 import PaymentModal from "../components/card/payment"
+
 import {useState} from 'react'
+import { useShoppingCart } from "use-shopping-cart"
+import { useQuery } from "react-query";
 
 export default function Cart() {
 
   const [success, setSuccess] = useState(false)
+
+  const { cartCount, cartDetails, removeItem, totalPrice, clearCart} = useShoppingCart();
+    const keys   = Object.keys(cartDetails);
+    const entries   = Object.entries(cartDetails);
+
+  const formatterPrice    = new Intl.NumberFormat('id-ID', {
+    style       : 'currency',
+    currency    : 'IDR'
+});
 
   return (
     <div>
@@ -20,10 +32,9 @@ export default function Cart() {
           <h1 className={styles.ryo}>Review Your order</h1>
           <hr />
           <div className={styles.list}>
-            <MyCart />
-            <MyCart />
-            <MyCart />
-            <MyCart />
+            {entries.map(item => (
+              <MyCart item={item} removeItem={removeItem} />
+            ))}
           </div>
           <hr />
         </div>
@@ -32,17 +43,17 @@ export default function Cart() {
           <div className={styles.total}>
             <div className={styles.subtotal}>
               <p>Subtotal:</p>
-              <p>Rp134.000</p>
+              <p>{formatterPrice.format(totalPrice)}</p>
             </div>
             <div className={styles.qty}>
               <p>Qty:</p>
-              <p>2</p>
+              <p>{cartCount}</p>
             </div>
           </div>
           <hr />
           <div className={styles.price}>
             <p>Total:</p>
-            <p>134.000</p>
+            <p>{formatterPrice.format(totalPrice)}</p>
           </div>
           <button onClick={() => setSuccess(true)} className={styles.btnBuy}>Pay</button>
         </div>

@@ -1,29 +1,43 @@
 import styles from "../../css/card.module.css";
-import pic from "../../assets/book/book2.png";
+import { useShoppingCart } from "use-shopping-cart";
 
-export default function Slide({setNotif}) {
+export default function Slide({setNotif, item}) {
+
+  const {addItem} = useShoppingCart()
+  function handleCart(e){
+    e.preventDefault();
+    addItem({
+      id: item.id,
+      author: item.author,
+      name: item.title,
+      currency: 'USD',
+      price: item.price,
+      image: item?.thumbnail
+    })
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.slideCard}>
         <div className={styles.left}>
-          <img src={pic}></img>
+          <img src={item.thumbnail}></img>
         </div>
         <div className={styles.right}>
           <div className={styles.title}>
-            <h4>Sebuah seni untuk bersikap bodoamat</h4>
+            <h4>{item.title}</h4>
           </div>
           <div className={styles.author}>
-            <i>By Mark Manson</i>
+            <i>By {item.author}</i>
           </div>
           <div className={styles.desc}>
             <p>
-              "Selama beberapa tahun belakangan, Mark Manson melalui blognya yang sangan populer"
+              "{item.description}"
             </p>
           </div>
           <div className={styles.price}>
-            <p>Rp59.000</p>
+            <p>{item.price}</p>
           </div>
-          <button onClick={() => setNotif(true)}>Add to Cart</button>
+          <button onClick={(e) => {setNotif(true); handleCart(e);}}>Add to Cart</button>
         </div>
       </div>
     </div>

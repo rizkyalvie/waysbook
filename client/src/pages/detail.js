@@ -1,40 +1,74 @@
-import React from "react";
 import styles from "../css/detail.module.css";
-import Navbar from "../components/navbar/navAuth";
+import Navbar from "../components/navbar/navbar";
+import NavAuth from "../components/navbar/navAuth"
 import Bg from "../components/background/bg";
-import book from "../assets/book/book1.png";
 import cart from "../assets/icons/cartwhite.png";
+import NotifModal from '../components/card/addCart'
+
+import { useShoppingCart } from "use-shopping-cart";
+import { useQuery } from "react-query";
+import { API } from "../config/api";
+import { useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext } from "../context/userContext";
 
 export default function Detail() {
+
+  let {id} = useParams()
+  const [notif, setNotif] = useState(false)
+
+  const [state] = useContext(UserContext)
+
+  const {addItem} = useShoppingCart()
+
+  let { data: book } = useQuery('bookCache', async () => {
+    const response = await API.get('/book/' + id);
+    return response.data.data 
+  });
+
+  console.log(book)
+
+  function handleCart(e){
+    e.preventDefault();
+    addItem({
+      id: book?.id,
+      author: book?.author,
+      name: book?.title,
+      currency: 'USD',
+      price: book?.price,
+      image: book?.thumbnail
+    })
+  }
+
   return (
     <div>
       <Bg />
-      <Navbar />
+      {state?.isLogin === true ? <NavAuth/> : <Navbar/>}
       <div className={styles.bookDetailContainer}>
         <div className={styles.top}>
           <div className={styles.left}>
-            <img src={book} />
+            <img src={book?.thumbnail} />
           </div>
           <div className={styles.right}>
-            <div className={styles.title}>Boys do write love letters</div>
+            <div className={styles.title}>{book?.title}</div>
             <div className={styles.author}>
-              <i>By Kansa Airlangga</i>
+              <i>{book?.author}</i>
             </div>
             <div className={styles.date}>
               <h2>Publication date</h2>
-              <p>25 Februari 2018</p>
+              <p>{book?.publicationdate}</p>
             </div>
             <div className={styles.pages}>
               <h2>Pages</h2>
-              <p>260</p>
+              <p>{book?.pages}</p>
             </div>
             <div className={styles.ISBN}>
               <h2>ISBN</h2>
-              <p>9786024529048</p>
+              <p>{book?.isbn}</p>
             </div>
             <div className={styles.price}>
               <h2>Price</h2>
-              <p>Rp59.000</p>
+              <p>{book?.price}</p>
             </div>
           </div>
         </div>
@@ -42,31 +76,15 @@ export default function Detail() {
           <h1>About This Book</h1>
           <div className={styles.desc}>
             <p>
-              Shenaya mulai percaya, bahwa bukan hanya anak perempuan yang suka
-              menulis. Sebab gadis itu menemukan surat-surat tersebut di
-              lokernya yang tak pernah dikunci. Ia pikir, semuanya adalah surat
-              salah kirim dari seorang siswi, sampai akhirnya Shenaya temukan
-              kode jelas tentang siapa yang menuliskan semuanya.
-            </p>
-            <br />
-            <p>
-              Namun permasalahannya adalah, Shenaya sudah lebih dulu menyukai
-              Dipo jauh sebelum surat-suratnya datang. Dan permasalahannya lagi
-              adalah, Argado datang entah atas perintah siapa. Hati Shenaya
-              semakin bimbang.
-            </p>
-            <br />
-            <p>
-              Nanti, setelah puluhan surat datang, setelah Argado semakin dekat,
-              dan setelah Dipo tetap tidak berkutik, Shenaya akhirnya tahu, ke
-              mana hatinya harus jatuh.
+              {book?.description}
             </p>
           </div>
-          <button>
+          <button onClick={(e) => {handleCart(e); setNotif(true)}}>
             Add Cart <img src={cart} />
           </button>
         </div>
       </div>
+      {notif && <NotifModal setNotif={setNotif} />}
     </div>
   );
 }

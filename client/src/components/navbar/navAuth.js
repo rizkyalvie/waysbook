@@ -5,9 +5,18 @@ import cart from "../../assets/icons/cart.png";
 import { Link } from "react-router-dom";
 import Dropdown from "./dropdown";
 import { useState } from "react";
+import { useShoppingCart } from "use-shopping-cart";
 
 export default function Navbar() {
   const [drop, setDrop] = useState(false);
+
+  const {cartDetails, clearCart} = useShoppingCart();
+  const cartData = Object.entries(cartDetails)
+
+  function logoutHandler() {
+        localStorage.removeItem("token");
+        clearCart();
+    }
 
   return (
     <div className={styles.navContainer}>
@@ -30,8 +39,8 @@ export default function Navbar() {
           </button>
         )}
       </div>
-      <div className={styles.notification}>1</div>
-      {drop && <Dropdown />}
+      <div className={styles.notification}>{cartData.length}</div>
+      {drop && <Dropdown logoutHandler={logoutHandler} />}
     </div>
   );
 }

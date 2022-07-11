@@ -13,13 +13,16 @@ export default function Complain() {
 
   const [state] = useContext(UserContext)
 
+  
+
   return (
     <div>
       <Bg />
 
       <h1 className={styles.cTitle}>Customer Complain</h1>
       {state?.user.data.status === "admin" ? 
-        <div className={styles.chatContainer}>
+      // admin
+        <div className={styles.chatContainer}> 
           <div className={styles.chatList}>
             <Contact />
             <Contact />
@@ -65,6 +68,7 @@ export default function Complain() {
           </div>
         </div>
        : 
+        // customer
         <div className={styles.chatContainerCustomer}>
           <div className={styles.chatCustomer}>
             <div className={styles.contactProfileCustomer}>

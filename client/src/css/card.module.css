@@ -5,12 +5,15 @@
 }
 
 .left{
-    width: 40rem;
+    width: 15rem;
+    height: 20rem;
+    max-width: 15rem;
+    min-width: 15rem;
     overflow: hidden;
 }
 
 .left img{
-    width: 100%;
+    width: 15rem;
     height: 20rem;
     object-fit: cover;
 }
@@ -19,12 +22,16 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    width: 15rem;
+    min-width: 15rem;
     background-color: white;
 }
 
 .right .title{
     font-size: 1.5rem;
     position: relative;
+    width: 100%;
+    word-wrap: break-word;
     top: -2rem;
     font-family: 'EB Garamond', serif;
 }
@@ -41,6 +48,8 @@
     position: relative;
     top: -4rem;
     font-size: 0.7rem;
+    width: 100%;
+    word-wrap: break-word;
     text-align: justify;
     font-family: 'Poppins', sans-serif;
     height: 10rem;
@@ -51,13 +60,13 @@
     color: green;
     font-weight: bold;
     position: relative;
-    top:-3rem;
+    top:0.5rem;
     font-family: 'Poppins', sans-serif;
 }
 
 .right button{
     position: relative;
-    top: -4rem;
+    top: -0.1rem;
     padding: 0.5rem 1rem;
     background-color: #393939;
     color: white;
@@ -94,9 +103,9 @@
 }
 
 .cardBody .title{
-    height: 8rem;
+    height: 6rem;
     width: 10rem;
-    flex-wrap: wrap;
+    word-wrap: break-word;
     overflow: hidden;
     font-size: 0.7rem;
 }
@@ -104,13 +113,14 @@
 .cardBody .title h1{
     line-height: 1.5rem;
     font-family: 'EB Garamond', serif !important;
+    line-height: 2.3rem;
 }
 
 .cardBody .author{
     color: #444444;
     font-size: 1rem;
     position: relative;
-    top: -1.5rem
+    top: -0.01rem
 }
 
 .cardBody .price{
@@ -118,5 +128,5 @@
     color: green;
     font-weight: bold;
     position: relative;
-    top: -1.5rem;
+    top: 0.01rem;
 }
