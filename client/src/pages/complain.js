@@ -5,17 +5,20 @@ import styles from "../css/complain.module.css";
 import profile from "../assets/temp/profile.jpg";
 import Contact from "../components/complain/contact";
 import Chat from "../components/complain/chat";
+import { UserContext } from "../context/userContext";
+import { useContext } from "react";
 // import {useState} from 'react'
 
 export default function Complain() {
-  const isAdmin = false;
+
+  const [state] = useContext(UserContext)
 
   return (
     <div>
       <Bg />
 
       <h1 className={styles.cTitle}>Customer Complain</h1>
-      {isAdmin ? (
+      {state?.user.data.status === "admin" ? 
         <div className={styles.chatContainer}>
           <div className={styles.chatList}>
             <Contact />
@@ -61,7 +64,7 @@ export default function Complain() {
             </div>
           </div>
         </div>
-      ) : (
+       : 
         <div className={styles.chatContainerCustomer}>
           <div className={styles.chatCustomer}>
             <div className={styles.contactProfileCustomer}>
@@ -97,7 +100,7 @@ export default function Complain() {
             </div>
           </div>
         </div>
-      )}
+      }
       <Navbar />
     </div>
   );

@@ -42,6 +42,8 @@ export default function Login({ setLogin, setRegister }) {
       const response = await API.post('/register', body, config);
       console.log(response.data)
 
+      setRegister(false)
+
     } catch (error) {
       console.log(error)
     }

@@ -88,7 +88,7 @@ export default function Add() {
           placeholder="Title"
         />
         <input
-          type="text"
+          type="date"
           name="pDate"
           onChange={handleChange}
           placeholder="Publication Date"
