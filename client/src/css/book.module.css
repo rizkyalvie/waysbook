@@ -7,7 +7,7 @@
     left: 15rem;
     position: absolute;
     top: 13rem;
-    height: 30rem;
+    height: 40rem;
     overflow: hidden;
 }
 
@@ -96,4 +96,15 @@
 .lt:hover{
     cursor: pointer;
     background-color: #838282;
+}
+
+.selectCon{
+    display: flex;
+    width: 10rem;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.selectCon select{
+    height: 1.5rem;
 }
