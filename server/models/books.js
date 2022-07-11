@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   books.init({
     title: DataTypes.STRING,
-    publicationdate: DataTypes.STRING,
+    publicationdate: DataTypes.DATE,
     pages: DataTypes.STRING,
     isbn: DataTypes.STRING,
     author: DataTypes.STRING,
