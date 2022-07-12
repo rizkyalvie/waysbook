@@ -1,6 +1,6 @@
 import styles from "../../css/cart.module.css";
-import book from "../../assets/book/book1.png";
 import del from "../../assets/icons/trash.png";
+import convertRupiah from 'rupiah-format'
 
 export default function Cart({item, removeItem}) {
   return (
@@ -19,7 +19,7 @@ export default function Cart({item, removeItem}) {
           <i>{item[1].author}</i>
         </div>
         <div className={styles.price}>
-          <p>{item[1].price}</p>
+          <p>{convertRupiah.convert(item[1].price)}</p>
         </div>
       </div>
     </div>

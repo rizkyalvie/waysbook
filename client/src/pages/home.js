@@ -26,7 +26,7 @@ export default function Home() {
   const [notif, setNotif] = useState(false)
 
   const title = 'Books';
-  document.title = 'DumbMerch | ' + title;
+  document.title = 'Waysbook | ' + title;
 
   const [state] = useContext(UserContext)
 

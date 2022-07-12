@@ -1,25 +1,32 @@
-import React from "react";
-import Navbar from "../components/navbar/navAuth";
-import Bg from "../components/background/bg";
-import styles from "../css/complain.module.css";
-import profile from "../assets/temp/blank-profile.png";
-import Contact from "../components/complain/contact";
-import Chat from "../components/complain/chat";
-import { UserContext } from "../context/userContext";
-import { useContext, useState, useEffect } from "react";
-// import {useState} from 'react'
+// import hook
+import React, { useState, useEffect, useContext } from 'react'
+
+import { Container, Row, Col } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
+import Bg from '../components/background/bg'
+
+
+// import here
+import Chat from '../components/complain/chat'
+import Contact from '../components/complain/contact'
+import NavbarAdmin from '../components/navbar/navAuth'
+
+import { UserContext } from '../context/userContext'
+
+// import socket.io-client 
 import {io} from 'socket.io-client'
 
+// initial variable outside socket
 let socket
-export default function Complain() {
-
+export default function ComplainAdmin() {
     const [contact, setContact] = useState(null)
     const [contacts, setContacts] = useState([])
+    // code here
     const [messages, setMessages] = useState([])
 
-    const title = "Complain admin"
-    document.title = 'DumbMerch | ' + title
-
+    // code here
     const [state] = useContext(UserContext)
 
     useEffect(() =>{
@@ -29,38 +36,43 @@ export default function Complain() {
             }
         })
 
+        // code here
         socket.on("new message", () => {
             socket.emit('load messages', contact?.id)
         })
 
         loadContacts()
+        // code here
         loadMessages()
 
         return () => {
             socket.disconnect()
         }
-    }, [messages]) 
+    }, [messages]) // code here
 
     const loadContacts = () => {
-        socket.emit("load user contacts")
-        socket.on("user contacts", (data) => {
-            
+        socket.emit("load customer contacts")
+        socket.on("customer contacts", (data) => {
+            // filter just customers which have sent a message
             let dataContacts = data.map((item) => ({
                 ...item,
                 message: item.senderMessage.length > 0 ? item.senderMessage[item.senderMessage.length - 1].message : 'Click here to start message'
             }))
             
+            // manipulate customers to add message property with the newest message
+            // code here
             setContacts(dataContacts)
         })
     }
 
+    // used for active style when click contact
     const onClickContact = (data) => {
         setContact(data)
-
+        // code here
         socket.emit('load messages', data.id)
     }
 
-
+    // code here
     const loadMessages = () => {
         socket.on('messages', async (data) => {
             if(data.length > 0){
@@ -90,31 +102,23 @@ export default function Complain() {
         }
     }
 
-
-  return (
-    <div>
-      <Bg />
-
-      <h1 className={styles.cTitle}>Customer Complain</h1>
-        <div className={styles.chatContainer}> 
-          <div className={styles.chatList}>
-            <Contact dataContact={contacts} clickContact={onClickContact} contact={contact}/>
-          </div>
-          <div className={styles.chat}>
-            <div className={styles.contactProfile}>
-              <img src={profile} alt="" />
-              <p>Ananda Rizky Alvie Nuryahya</p>
+    return (
+        <>
+        <div>
+            <div className="backgroundImageFull">
+                    <NavbarAdmin />
+                <Container fluid style={{height: '89.5vh', paddingLeft:"100px", paddingRight:"100px" }}>
+                <Row style={{display: 'flex'}}>
+                    <Col md={3} style={{height: '89.5vh'}} className="px-3 overflow-auto">
+                        <Contact style={{backgroundColor: "#dfdfdf", borderRadius: "5px"}}  dataContact={contacts} clickContact={onClickContact} contact={contact}/>
+                    </Col>
+                    <Col md={9} style={{height: '89.5vh', backgroundColor: "#dfdfdf", borderRadius: "5px", width: '60rem', overflow: 'hidden' }} className="px-3 overflow-auto">
+                        <Chat contact={contact} messages={messages} user={state.user} sendMessage={onSendMessage}  />
+                    </Col>
+                </Row>
+            </Container>
             </div>
-            <div className={styles.message}>
-              <Chat contact={contact} messages={messages} user={state.user} sendMessage={onSendMessage}/>
             </div>
-            <div className={styles.inputMessage}>
-              <input type="text" placeholder="Write message here" />
-              <button>Send</button>
-            </div>
-          </div>
-        </div>
-      <Navbar />
-    </div>
-  );
+        </>
+    )
 }

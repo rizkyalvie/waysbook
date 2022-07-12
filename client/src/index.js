@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
+import './css/app.css'
+
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserContextProvider } from './context/userContext';
 import { QueryClient, QueryClientProvider } from 'react-query'
-
 import { CartProvider } from 'use-shopping-cart'
-import './css/app.css'
+
 
 const stripeKey = process.env.YOUR_STRIPE_PUBLIC_KEY
 

@@ -45,12 +45,21 @@ export default function Dropdown({logoutHandler}) {
           </div>
         </Link> 
         }
+        {state?.user.data.status === "admin" ? 
+        <Link to="/complain-admin">
+        <div className={styles.complain}>
+          <img src={complain} />
+          <p>Complain</p>
+        </div>
+        </Link> 
+        :
         <Link to="/complain">
         <div className={styles.complain}>
           <img src={complain} />
           <p>Complain</p>
         </div>
         </Link>
+        }
         <div className={styles.hLine}></div>
         <Link onClick={() => {logout(); logoutHandler()}} to="/">
         <div className={styles.logout}>
